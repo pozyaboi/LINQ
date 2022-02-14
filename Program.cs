@@ -8,14 +8,41 @@ namespace LINQ
 {
     class Program
     {
+        static IEnumerable<string> Suits()
+        {
+            yield return "Трефы";
+            yield return "Ромб";
+            yield return "Черви";
+            yield return "Пики";
+        }
+
+        static IEnumerable<string> Ranks()
+        {
+            yield return "два";
+            yield return "три";
+            yield return "четыре";
+            yield return "пять";
+            yield return "шесть";
+            yield return "семь";
+            yield return "восемь";
+            yield return "девять";
+            yield return "десять";
+            yield return "валет";
+            yield return "дама";
+            yield return "король";
+            yield return "туз";
+        }
         static void Main(string[] args)
         {
-            string[] people = { "Tom", "Bob", "Sam", "Tim", "Tomas", "Bill" };
+            var startingDeck = from s in Suits()
+                               from r in Ranks()
+                               select new { Suit = s, Rank = r };
 
-            var selectedPeople = people.Where(p => p.ToUpper().StartsWith("T")).OrderBy(p => p);
+            foreach (var card in startingDeck)
+            {
+                Console.WriteLine(card);
+            }
 
-            foreach (string person in selectedPeople)
-                Console.WriteLine(person);
         }
     }
 }
