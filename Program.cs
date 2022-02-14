@@ -10,12 +10,11 @@ namespace LINQ
     {
         static void Main(string[] args)
         {
-            string[] people = { "Tom", "Bob", "Sam", "Tim", "Tomas", "Bill" };
+            string[] people = { "Tom", "Alice", "Bob", "Sam", "Tim", "Tomas", "Bill" };
 
-            var selectedPeople = people.Where(p => p.ToUpper().StartsWith("T")).OrderBy(p => p);
-
-            foreach (string person in selectedPeople)
-                Console.WriteLine(person);
+            var selectedPeople = from p in people
+                                 where p.Length == 3
+                                 select p;
         }
     }
 }
